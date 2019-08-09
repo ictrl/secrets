@@ -57,7 +57,7 @@ passport.serializeUser(function(user, done) {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "/auth/google/secrets",  
+    callbackURL: "https://sheltered-lake-19029.herokuapp.com/auth/google/secrets",  
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"    
 },
   function(accessToken, refreshToken, profile, cb) {
