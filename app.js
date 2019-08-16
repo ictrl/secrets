@@ -27,7 +27,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect(process.env.MONGODB,{useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser: true});
 mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema({
@@ -58,7 +58,7 @@ passport.serializeUser(function(user, done) {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "https://stormy-wave-65517.herokuapp.com/auth/google/secrets",  
+    callbackURL: "/auth/google/secrets",  
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"    
 },
   function(accessToken, refreshToken, profile, cb) {
@@ -171,5 +171,4 @@ app.post("/register", function(req, res){
 
   app.listen(process.env.PORT || 3000, function(){
     console.log("http://localhost:3000");
-    console.log(process.env.PORT);
 });
